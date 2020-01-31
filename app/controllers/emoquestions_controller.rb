@@ -20,7 +20,7 @@ class EmoquestionsController < ApplicationController
    
 
   def check
-
+    #render plain: params[:emoquestion]
     question_id = Integer(params[:emoquestion]['question_id']) 
     answ = params[:emoquestion]['text']
 
@@ -47,7 +47,8 @@ def failure
   
   #render plain: 
   @question_id = params[:id]
-  render :template => 'emoquestions/failure' 
+  redirect_to :action => "show"
+  #render :template => 'emoquestions/failure' 
 end
 
 

@@ -1,42 +1,28 @@
+
+<div class='main_div'>
+
+<div class='blank_top'>
+</div>
+
+
+<div class='bigger'>
 <p>
-  <strong>emoji:</strong>
+  <strong>猫はネズミを食べる</strong>
   <%= @emoquestion.emoji %>
 </p>
- 
-<p>
-  <strong>answer_a:</strong>
-  <%= @emoquestion.answer_a%>
-</p>
+</div>
 
-<p>
-  <strong>Keywoanswer_a</strong>
-  <%= @emoquestion.answer_a %>
-</p>
+<div class='blank_top'>
+</div>
 
-<p>
-  <strong>is_correct_a:</strong>
-  <%= @emoquestion.is_correct_a%>
-</p>
-
-<p>
-  <strong>is_correct_b:</strong>
-  <%= @emoquestion.is_correct_b %>
-</p>
-
-
+<div  class='big'>
 
 <%= form_with scope: :emoquestion, url: check_emoquestion_path, local: true do |form| %>
  
-  <p>
-
-    <%= form.label :answer %><br>
-    
-    <%= form.text_area :text %>
- 
-    <%= form.hidden_field :question_id, :value => @emoquestion.id %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+<p><%= form.button  :True , class: "button499",  name: "emoquestio", value: "1"%> <span class="white">-------</span>  <%= form.button  :False , class: "button499", name: "emoquestio", value: "0" %>
+<%= form.hidden_field :question_id, :value => @emoquestion.id %></p> 
 <% end %>
+   </p>
+
+</div>   
+</div>
