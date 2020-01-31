@@ -1,0 +1,22 @@
+<h1>Listing articles</h1>
+ 
+<table>
+  <tr>
+    <th>emoji</th>
+    <th>answer_a</th>
+    <th>is_correct_a</th>
+	 <th>answer_b</th>
+    <th>is_correct_b</th>
+  </tr>
+ 
+  <% @emoquestions.each do |emoquestion| %>
+    <tr>
+      <td><%= emoquestion.emoji %></td>
+      <td><%= emoquestion.answer_a %></td>
+	  <td><%= emoquestion.is_correct_a %></td>
+	  <td><%= emoquestion.answer_b %></td>
+	  <td><%= emoquestion.is_correct_b %></td> 
+      <td><%= link_to 'Show', emoquestion_path(emoquestion) %></td>
+    </tr>
+  <% end %>
+</table>

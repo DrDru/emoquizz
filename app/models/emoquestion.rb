@@ -1,0 +1,2 @@
+class Emoquestion < ApplicationRecord
+end

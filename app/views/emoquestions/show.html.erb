@@ -1,0 +1,42 @@
+<p>
+  <strong>emoji:</strong>
+  <%= @emoquestion.emoji %>
+</p>
+ 
+<p>
+  <strong>answer_a:</strong>
+  <%= @emoquestion.answer_a%>
+</p>
+
+<p>
+  <strong>Keywoanswer_a</strong>
+  <%= @emoquestion.answer_a %>
+</p>
+
+<p>
+  <strong>is_correct_a:</strong>
+  <%= @emoquestion.is_correct_a%>
+</p>
+
+<p>
+  <strong>is_correct_b:</strong>
+  <%= @emoquestion.is_correct_b %>
+</p>
+
+
+
+<%= form_with scope: :emoquestion, url: check_emoquestion_path, local: true do |form| %>
+ 
+  <p>
+
+    <%= form.label :answer %><br>
+    
+    <%= form.text_area :text %>
+ 
+    <%= form.hidden_field :question_id, :value => @emoquestion.id %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
