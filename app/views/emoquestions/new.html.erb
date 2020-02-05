@@ -1,26 +1,15 @@
 <%= form_with scope: :emoquestion, url: emoquestions_path, local: true do |form| %>
   <p>
-    <%= form.label :emoji %><br>
-    <%= form.text_field :emoji %>
+    <%= form.label :question %><br>
+    <%= form.text_field :question %>
   </p>
  
+
   <p>
-    <%= form.label :answer_a %><br>
-    <%= form.text_area :answer_a %>
+    <%= form.label :is_correct %><br>
+    <%= form.text_area :is_correct %>
   </p>
-  <p>
-    <%= form.label :is_correct_a %><br>
-    <%= form.text_area :is_correct_a %>
-  </p>
-  
-  <p>
-    <%= form.label :answer_b %><br>
-    <%= form.text_area :answer_b %><br>
-  </p>
-   <p>
-    <%= form.label :is_correct_b %><br>
-    <%= form.text_area :is_correct_b %>
-  </p>
+
 
  
   <p>

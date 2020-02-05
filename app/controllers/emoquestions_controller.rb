@@ -14,24 +14,43 @@ class EmoquestionsController < ApplicationController
     end
   
    def show
+
+    #try
+     # {
+          @emoquestion = Emoquestion.find(params[:id])
+      #}
+      #catch(Exeption)
+      #{
+       #check that it is not the biggest id
+      #}
+      #finally
+      #{
+      #this_code_is_always_executed();
+      # something went wrong
+      #}
+
+
+
      @emoquestion = Emoquestion.find(params[:id])
-     
-    end
+  end
    
 
   def check
     #render plain: params[:emoquestion]
     question_id = Integer(params[:emoquestion]['question_id']) 
-    answ = params[:emoquestion]['text']
+    answ =  Integer(params[:emoquestion]['answer'])
 
-    if answ == Emoquestion.find(question_id).answer_a
+    answer = Emoquestion.find(question_id).is_correct
+
+    #render plain: answ == answer
+
+    if answ == answer
 
       redirect_to :action => "success", id: question_id
+  
+    else
     
-   else
-    
-    redirect_to :action => "failure", id: question_id  
-    
+    redirect_to :action => "failure", id: question_id, true_answer: answer
 end
 
 end
@@ -39,22 +58,45 @@ end
 def success
      
     next_question_id = Integer(params[:id]) + 1
+    #render plain: next_question_id 
     #render :template => 'emoquestions/success' 
-    redirect_to :action => "show", id: next_question_id  
+    redirect_to :action => "show", id: next_question_id
 end
 
 def failure
   
-  #render plain: 
+  #render plain: 僻 # fasl
   @question_id = params[:id]
-  redirect_to :action => "show"
-  #render :template => 'emoquestions/failure' 
+  #render plain: @question_id 
+  # true_answer
+  redirect_to :action => "failed", id: params[:id], true_answer: params[:answer]  ## &#128575; Oh no Sentence is false ! Next # 「猫は黒い」は間違っています
+  
 end
+
+  def failed
+
+    answer = Emoquestion.find(params[:id]).question
+
+    is_correct = Emoquestion.find(params[:id]).is_correct
+
+    if is_correct == 1
+
+      params['message'] =  answer + ' is correct'
+
+    else 
+    
+      params['message'] =  answer + ' is not correct'
+
+    end
+    
+    #render plain: params
+
+  end
 
 
   private
   def emoquestion_params
-    params.require(:emoquestion).permit(:emoji, :answer_a, :answer_b, :is_correct_a, :is_correct_b)
+    params.require(:emoquestion).permit(:question, :is_correct)
   end
 
 end

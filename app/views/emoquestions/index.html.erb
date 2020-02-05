@@ -11,11 +11,8 @@
  
   <% @emoquestions.each do |emoquestion| %>
     <tr>
-      <td><%= emoquestion.emoji %></td>
-      <td><%= emoquestion.answer_a %></td>
-	  <td><%= emoquestion.is_correct_a %></td>
-	  <td><%= emoquestion.answer_b %></td>
-	  <td><%= emoquestion.is_correct_b %></td> 
+      <td><%= emoquestion.question %></td>
+      <td><%= emoquestion.is_correct %></td>
       <td><%= link_to 'Show', emoquestion_path(emoquestion) %></td>
     </tr>
   <% end %>

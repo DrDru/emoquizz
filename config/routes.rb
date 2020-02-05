@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'success'
     get 'failure'
     post 'check'
+    get 'failed'
   end
 end
 
