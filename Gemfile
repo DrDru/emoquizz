@@ -23,7 +23,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 
-gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'pg'
 

@@ -10,11 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree .
+ *= require_self
  */
-@import "bootstrap";
 
 
-.button499 {border-radius: 8px;}
+
 
 .main_div {
 	
@@ -33,13 +34,19 @@
 .blank_top {
 
    
-   height: 130px;
+   height: 80px;
 
 
 }
 
 
 .bigger {
+
+   font-size: 400%;
+
+}
+
+.bigger2 {
 
    font-size: 300%;
 
@@ -48,5 +55,18 @@
 .big {
 
 	font-size: 300%;
+
+}
+
+.button499 {
+
+    font-size: 120%;
+    border-radius: 12px;
+
+}
+
+body  {
+
+   font-family: "Helvetica Neue", "Comic Sans MS" 
 
 }
