@@ -10,7 +10,7 @@ development:
   database: quizz_prod
   pool: 5
   username: postgres
-  password: admins
+  password: admin
 
 test:
   adapter: postgresql
@@ -18,4 +18,4 @@ test:
   database: quizz_test
   pool: 5
   username: postgres
-  password: admins
+  password: admin

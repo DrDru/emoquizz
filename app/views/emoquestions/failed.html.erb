@@ -1,9 +1,27 @@
+
+<div class='main_div'>
+
+<div class='blank_top'>
+</div>
+
+
+<div class='bigger'>
 <p>
-You failed. Sorry
-<br>
-Try again
+  
+<p>
+
+
+<%= params[:cats] %>
 </p>
 
 <%= params[:message] %>
+<br>
+<%= params[:score] %>
+<br>
 
-<%= link_to 'Show', emoquestion_path(params[:id]) %>
+<%= link_to 'Next', emoquestion_path(params[:next_question_id], :score => params[:score]) %> 
+   
+</p>
+</div>
+
+

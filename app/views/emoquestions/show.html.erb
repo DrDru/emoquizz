@@ -11,7 +11,7 @@
   <!-- 猫はネズミを食べる -->
   <%= @emoquestion.question %>
   
-</p>
+</p><%= params[:score] %>
 </div>
 
 <div class='blank_top'>
@@ -27,12 +27,14 @@
   <%= form.button  :正 , class: "button499",  name: "emoquestio", value: "1"%>
 <%= form.hidden_field :question_id, :value => @emoquestion.id %>
 <%= form.hidden_field :answer, :value => 1 %>
+<%= form.hidden_field :score, :value => params[:score] %>
 <% end %> </th>
 <th><span class="white">-------------</span></th>
     <th><%= form_with scope: :emoquestion, url: check_emoquestion_path, local: true do |form| %>
    <%= form.button  :僻 , class: "button499", name: "emoquestio", value: "0" %>
    <%= form.hidden_field :question_id, :value => @emoquestion.id %>
 <%= form.hidden_field :answer, :value => 0 %>
+<%= form.hidden_field :score, :value => params[:score] %>
 <% end %></th>
 
   </tr>
