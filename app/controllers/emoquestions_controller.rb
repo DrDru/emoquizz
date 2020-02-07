@@ -15,12 +15,9 @@ class EmoquestionsController < ApplicationController
   
    def show
 
-    #render plain: params.inspect
-
     if params[:score] == nil
 
        params[:score] = 0
-
 
     end  
 
@@ -31,17 +28,13 @@ class EmoquestionsController < ApplicationController
     end   
 
     rescue
+      begin
 
-    begin
-
-
-    if Integer(params[:id]) == Emoquestion.last.id + 1
-
-              redirect_to :action => "index"
-
-
+      if Integer(params[:id]) == Emoquestion.last.id + 1
       
-    else Integer(params[:id]) > Emoquestion.last.id + 1
+        redirect_to :action => "index"
+
+      else Integer(params[:id]) > Emoquestion.last.id + 1
 
         render plain: 'this ID is way too high' 
 
@@ -53,20 +46,16 @@ class EmoquestionsController < ApplicationController
 
     end
 
-    end    
+  end    
       
       
    
 
   def check
-    #render plain: params.inspect
 
     question_id = Integer(params[:emoquestion]['question_id']) 
     answ =  Integer(params[:emoquestion]['answer'])
-
     answer = Emoquestion.find(question_id).is_correct
-
-    
 
     if answ == answer
 
@@ -75,65 +64,55 @@ class EmoquestionsController < ApplicationController
     else
     
     redirect_to :action => "failure", id: question_id, true_answer: answer, score: params[:emoquestion]['score']
-end
-
+  end
 end
 
 def success
-    
-    #render plain: params.inspect 
+     
     next_question_id = Integer(params[:id]) + 1
-    #render plain: next_question_id 
-    #render :template => 'emoquestions/success' 
+
     redirect_to :action => "show", id: next_question_id, score: params[:score]
+
 end
 
 def failure
   
-  #render plain: 僻 # fasl
   next_question_id = Integer(params[:id]) + 1
-  #render plain: params[:score]
-  # true_answe
   new_score = Integer(params[:score]) + 1
 
-  #render plain: new_score
-  redirect_to :action => "failed", id: Integer(params[:id]), next_question_id: next_question_id, true_answer: params[:answer], score: new_score  ## &#128575; Oh no Sentence is false ! Next # 「猫は黒い」は間違っています
-  
+  redirect_to :action => "failed", id: Integer(params[:id]), next_question_id: next_question_id, true_answer: params[:answer], score: new_score  
+
 end
 
-  def failed
+def failed
 
-    answer = Emoquestion.find(params[:id]).question
+  answer = Emoquestion.find(params[:id]).question
+  is_correct = Emoquestion.find(params[:id]).is_correct
 
-    is_correct = Emoquestion.find(params[:id]).is_correct
+  tmp = ''
 
-
-    tmp = ''
-
-
-
-    params[:score] = [Integer(params[:score]), 20].min
+  params[:score] = [Integer(params[:score]), 20].min
     
-    (1..Integer(params[:score])).each do |i|  tmp += '😿' end
+  (1..Integer(params[:score])).each do |i|  tmp += '😿' end
 
-   params['cats'] = tmp.encode("UTF-8")
+  params['cats'] = tmp.encode("UTF-8")
 
-    if is_correct == 1
+  if is_correct == 1
 
-      params['message'] =  "'" + answer + "'" + ' is correct'
+    params['message'] =  "'" + answer + "'" + ' is correct'
 
-    else 
+  else 
     
-      params['message'] =  "'"+ answer + "'" + ' is not correct'
+    params['message'] =  "'"+ answer + "'" + ' is not correct'
 
-    end
-    
   end
+    
+end
 
 
-  private
-  def emoquestion_params
-    params.require(:emoquestion).permit(:question, :is_correct)
-  end
+private
+ def emoquestion_params
+   params.require(:emoquestion).permit(:question, :is_correct)
+ end
 
 end
