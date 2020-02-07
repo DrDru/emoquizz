@@ -83,9 +83,9 @@ def success
     
     #render plain: params.inspect 
     next_question_id = Integer(params[:id]) + 1
-    render plain: next_question_id 
+    #render plain: next_question_id 
     #render :template => 'emoquestions/success' 
-    #redirect_to :action => "show", id: next_question_id, score: params[:score]
+    redirect_to :action => "show", id: next_question_id, score: params[:score]
 end
 
 def failure
@@ -109,6 +109,10 @@ end
 
 
     tmp = ''
+
+
+
+    params[:score] = [Integer(params[:score]), 20].min
     
     (1..Integer(params[:score])).each do |i|  tmp += '😿' end
 
@@ -124,8 +128,6 @@ end
 
     end
     
-    #render plain: params
-
   end
 
 
