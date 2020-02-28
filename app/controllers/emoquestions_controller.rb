@@ -22,8 +22,34 @@ class EmoquestionsController < ApplicationController
     end  
 
     begin
-      
-          @emoquestion = Emoquestion.find(params[:id])
+        
+        @emoquestion = Emoquestion.find(params[:id])
+        tmp = @emoquestion.question.split(' ')
+
+        create_link = ->(x) { '<a href="../definitions/' + x + '"' + ' class="dictionary_links"' + '>' + x + '</a>' }
+
+        tmp = tmp.map { |elem| 
+
+          if elem[0] == '&'
+
+            if elem[1] == '&'
+                  elem[2..-1]
+            else 
+
+             create_link.call(elem)
+
+            end 
+
+            else 
+
+              create_link.call(elem)
+
+          end  
+
+        }
+
+        @emoquestion.question =  tmp.join("") 
+        #<a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a> 
     
     end   
 
@@ -66,6 +92,12 @@ class EmoquestionsController < ApplicationController
     redirect_to :action => "failure", id: question_id, true_answer: answer, score: params[:emoquestion]['score']
   end
 end
+
+def ajax_test
+     
+
+end
+
 
 def success
      

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :definitions
   resources :emoquestions do
 
   member do
@@ -11,8 +12,7 @@ Rails.application.routes.draw do
   end
 end
 
-  
-  resources :ask
- 
+
+
   root 'welcome#index'
 end

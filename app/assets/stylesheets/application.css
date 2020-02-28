@@ -67,6 +67,15 @@
 
 body  {
 
-   font-family: "Helvetica Neue", "Comic Sans MS" 
+   font-family: "Helvetica Neue"
 
 }
+
+
+.dictionary_links  {
+
+    color: black;
+    text-decoration: none;
+
+}
+
