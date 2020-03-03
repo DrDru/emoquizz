@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_214847) do
+ActiveRecord::Schema.define(version: 2020_03_03_132200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "definitions", id: :serial, force: :cascade do |t|
     t.string "entry", limit: 20, null: false
+    t.text "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text "content"
   end
 
   create_table "emoquestion2s", force: :cascade do |t|
@@ -31,13 +31,8 @@ ActiveRecord::Schema.define(version: 2020_02_28_214847) do
   end
 
   create_table "emoquestions", force: :cascade do |t|
-    t.string "emoji"
-    t.string "answer_a"
-    t.string "answer_b"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "is_correct_a"
-    t.integer "is_correct_b"
     t.integer "is_correct"
     t.string "question"
   end
