@@ -26,23 +26,24 @@ class EmoquestionsController < ApplicationController
         @emoquestion = Emoquestion.find(params[:id])
         tmp = @emoquestion.question.split(' ')
 
-        create_link = ->(x) { '<a href="../definitions/' + x + '"' + ' class="dictionary_links"' + '>' + x + '</a>' }
+        create_link = ->(x, y) { '<a href="../definitions/' + x + '"' + ' class="dictionary_links"' + '>' + y + '</a>' }
 
         tmp = tmp.map { |elem| 
 
-          if elem[0] == '&'
+          if elem[0..1] == '&&'
 
-            if elem[1] == '&'
                   elem[2..-1]
-            else 
 
-             create_link.call(elem)
+          elsif  elem[0..1]  == '$$'
 
-            end 
+               elem = elem.split('_')
 
-            else 
+               create_link.call(elem[1], elem[0][2..-1])
 
-              create_link.call(elem)
+           
+
+
+              else create_link.call(elem, elem)
 
           end  
 
@@ -50,6 +51,8 @@ class EmoquestionsController < ApplicationController
 
         @emoquestion.question =  tmp.join("") 
         #<a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a> 
+
+        #render plain: @emoquestion.question
     
     end   
 
@@ -80,23 +83,20 @@ class EmoquestionsController < ApplicationController
   def check
 
     question_id = Integer(params[:emoquestion]['question_id']) 
+    question = params[:emoquestion]['question_body']
     answ =  Integer(params[:emoquestion]['answer'])
     answer = Emoquestion.find(question_id).is_correct
-
+    #render plain: params
     if answ == answer
 
       redirect_to :action => "success", id: question_id, score: params[:emoquestion]['score']
 
     else
     
-    redirect_to :action => "failure", id: question_id, true_answer: answer, score: params[:emoquestion]['score']
+    redirect_to :action => "failure", id: question_id, true_answer: answer, score: params[:emoquestion]['score'], question_body: question
   end
 end
 
-def ajax_test
-     
-
-end
 
 
 def success
@@ -111,14 +111,17 @@ def failure
   
   next_question_id = Integer(params[:id]) + 1
   new_score = Integer(params[:score]) + 1
+  #render plain: params[:question_body]
 
-  redirect_to :action => "failed", id: Integer(params[:id]), next_question_id: next_question_id, true_answer: params[:answer], score: new_score  
+  redirect_to :action => "failed", id: Integer(params[:id]), next_question_id: next_question_id, true_answer: params[:answer], score: new_score, question_body: params[:question_body]  
 
 end
 
 def failed
 
   answer = Emoquestion.find(params[:id]).question
+
+  
   is_correct = Emoquestion.find(params[:id]).is_correct
 
   tmp = ''
@@ -129,13 +132,15 @@ def failed
 
   params['cats'] = tmp.encode("UTF-8")
 
+  #render plain: params[:question_body]
+
   if is_correct == 1
 
-    params['message'] =  "'" + answer + "'" + ' is correct'
+    params['message'] =  "[" + params[:question_body]  + "]" + ' is correct'
 
   else 
     
-    params['message'] =  "'"+ answer + "'" + ' is not correct'
+    params['message'] =  "[ "+ params[:question_body] + "]" + ' is not correct'
 
   end
     

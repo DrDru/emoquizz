@@ -2,9 +2,10 @@ class StoriesController < ApplicationController
   
   def show
   	#render plain: params
-  	render 'stories/' + params[:id]
+  	render  'stories/' + params[:id]
   end
 
-  def index
+  def intro
+      render 'intro'
   end
 end

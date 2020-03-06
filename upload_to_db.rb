@@ -13,6 +13,7 @@ conn.exec("create table emoquestions (
 
 	    id serial PRIMARY KEY,
         question varchar (200) NOT NULL,
+		is_correct integer,
 		created_at timestamp,
 		updated_at timestamp
 		)
@@ -21,8 +22,10 @@ conn.exec("create table emoquestions (
 
 table.each { |elem|
 
+ puts elem
+
     conn.exec("
-    INSERT INTO emoquestions (question, created_at, updated_at) VALUES ('" + elem[0] + "' , '2020-01-01', '2020-01-01');"
+    INSERT INTO emoquestions (question, is_correct, created_at, updated_at) VALUES ('" + elem[0] + "', " + elem[1] + " , '2020-01-01', '2020-01-01');"
     
 	)
 	#puts elem

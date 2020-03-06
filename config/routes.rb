@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  #get 'menu/index'
+  #get '/intro' => 'menu#intro'
+  get '/contact' => 'menu#contact'
+  get '/about' => 'menu#about'
   resources :definitions
   resources :stories
-
   resources :emoquestions do
 
   member do
@@ -15,5 +18,5 @@ Rails.application.routes.draw do
 end
 
   
-  root 'welcome#index'
+  root 'menu#index'
 end
