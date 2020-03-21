@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/contact' => 'menu#contact'
   get '/about' => 'menu#about'
   get '/content' => 'menu#content'
+  get '/how_it_works' => 'menu#how_it_works'
   resources :definitions
   resources :stories
   resources :emoquestions do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     get 'failure'
     post 'check'
     get 'failed'
+    
   end
 end
 

@@ -7,6 +7,10 @@ class EmoquestionsController < ApplicationController
    def new
    end
 
+   def how_it_works
+      render 'how_it_works.html'   
+   end 
+
    def create
      @emoquestion = Emoquestion.new(emoquestion_params)
 	   @emoquestion.save
