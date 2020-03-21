@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #get '/intro' => 'menu#intro'
   get '/contact' => 'menu#contact'
   get '/about' => 'menu#about'
+  get '/content' => 'menu#content'
   resources :definitions
   resources :stories
   resources :emoquestions do
