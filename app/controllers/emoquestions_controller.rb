@@ -134,13 +134,16 @@ def failed
 
   #render plain: params[:question_body]
 
+  tmp = params[:question_body]
+  tmp = tmp.gsub! '../', '../../'
+
   if is_correct == 1
 
-    params['message'] =  "[" + params[:question_body]  + "]" + ' is correct'
+    params['message'] =  "[" + tmp + "]" + ' is correct'
 
   else 
     
-    params['message'] =  "[ "+ params[:question_body] + "]" + ' is not correct'
+    params['message'] =  "[ "+ tmp + "]" + ' is not correct'
 
   end
     
