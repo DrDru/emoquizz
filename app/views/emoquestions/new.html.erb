@@ -1,0 +1,18 @@
+<%= form_with scope: :emoquestion, url: emoquestions_path, local: true do |form| %>
+  <p>
+    <%= form.label :question %><br>
+    <%= form.text_field :question %>
+  </p>
+ 
+
+  <p>
+    <%= form.label :is_correct %><br>
+    <%= form.text_area :is_correct %>
+  </p>
+
+
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

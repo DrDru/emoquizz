@@ -1,0 +1,16 @@
+<h1>List of all questions</h1>
+ 
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Is correct ?</th>
+  </tr>
+ 
+  <% @emoquestions.each do |emoquestion| %>
+    <tr>
+      <td><%= emoquestion.question %></td>
+      <td><%= emoquestion.is_correct %></td>
+      <td><%= link_to 'Show', emoquestion_path(emoquestion) %></td>
+    </tr>
+  <% end %>
+</table>

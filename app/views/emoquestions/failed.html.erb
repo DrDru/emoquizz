@@ -1,0 +1,26 @@
+
+<div class='main_div'>
+
+<div class=''>
+</div>
+
+
+<div class='bigger2'>
+<p>
+  
+<p>
+
+
+<%= params[:cats] %>
+</p>
+
+<%= params[:message].to_s.html_safe %>
+
+<br>
+
+<%= link_to 'Next', emoquestion_path(params[:next_question_id], :score => params[:score]) %> 
+   
+</p>
+</div>
+
+
